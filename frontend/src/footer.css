@@ -1,0 +1,184 @@
+.site-footer {
+  margin-top: 52px;
+  border-top: 1px solid #dfe8e3;
+  color: #65736c;
+}
+
+.site-footer-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(150px, 0.7fr) minmax(190px, 0.8fr);
+  gap: 44px;
+  padding: 34px 2px 30px;
+}
+
+.footer-brand-column {
+  max-width: 390px;
+}
+
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #26372f;
+  text-decoration: none;
+}
+
+.footer-brand-mark {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid #d8ebe2;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #f0faf5, #e3f3ec);
+}
+
+.footer-brand-mark svg {
+  width: 23px;
+  fill: none;
+  stroke: #13876b;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.footer-brand-name {
+  font: 800 19px var(--display);
+  letter-spacing: -0.8px;
+}
+
+.footer-brand-name span {
+  color: #0e9b79;
+}
+
+.footer-tagline {
+  margin: 15px 0 5px;
+  color: #2d3b34;
+  font: 700 14px var(--display);
+  letter-spacing: -0.2px;
+}
+
+.footer-description {
+  max-width: 330px;
+  margin: 0;
+  color: #87938d;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.footer-nav,
+.footer-highlights {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.footer-nav h2,
+.footer-highlights h2 {
+  margin: 0 0 4px;
+  color: #37463e;
+  font: 700 10px var(--mono);
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+}
+
+.footer-nav a {
+  color: #79867f;
+  font-size: 11px;
+  text-decoration: none;
+  transition: color 0.16s ease, transform 0.16s ease;
+}
+
+.footer-nav a:hover {
+  color: #0e8e6f;
+  transform: translateX(2px);
+}
+
+.footer-nav a:focus-visible,
+.footer-brand:focus-visible {
+  border-radius: 3px;
+  outline: 2px solid #70cdae;
+  outline-offset: 4px;
+}
+
+.footer-highlights span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #79867f;
+  font-size: 11px;
+}
+
+.footer-highlights span i {
+  display: inline-grid;
+  min-width: 42px;
+  height: 22px;
+  place-items: center;
+  border: 1px solid #e1eee7;
+  border-radius: 6px;
+  background: #f1f8f4;
+  color: #16856a;
+  font: 500 9px var(--mono);
+  font-style: normal;
+}
+
+.site-footer-bottom {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px solid #e8eeeb;
+  color: #98a39d;
+  font-size: 9px;
+}
+
+.site-footer-bottom span:last-child {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.site-footer-bottom i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #48aa8c;
+}
+
+@media (max-width: 760px) {
+  .site-footer-main {
+    grid-template-columns: minmax(0, 1.2fr) minmax(145px, 0.8fr);
+    gap: 28px 22px;
+  }
+
+  .footer-brand-column {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-footer {
+    margin-top: 36px;
+  }
+
+  .site-footer-main {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding-top: 27px;
+  }
+
+  .footer-brand-column {
+    grid-column: auto;
+  }
+
+  .site-footer-bottom {
+    min-height: 0;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 9px;
+    padding: 13px 0;
+  }
+}

@@ -4,7 +4,7 @@ import { ComparisonTable } from './components/ComparisonTable'
 import { ControlPanel } from './components/ControlPanel'
 import { Grid, keyOf, type CellState, type Tool } from './components/Grid'
 import { StatsPanel } from './components/StatsPanel'
-import { ALGORITHMS, type Algorithm, type PathRequest, type PathResult, type Position } from './types'
+import { type Algorithm, type PathRequest, type PathResult, type Position } from './types'
 
 const ROWS = 20, COLUMNS = 20
 const initialState = (): CellState => ({ walls: new Set(), start: { row: 9, column: 5 }, end: { row: 9, column: 14 } })
@@ -76,8 +76,6 @@ export default function App() {
     }
     clearPath(); setCells(current => ({ ...current, walls })); setComparison([])
   }
-  const algo = ALGORITHMS.find(item => item.value === algorithm)!
-
   return <div className="app-shell">
     <header className="topbar">
       <a className="brand" href="#top" aria-label="PathFinder home"><span className="brand-mark"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 23 14 9l5 10 6-9"/><circle cx="7" cy="23" r="2.5"/><circle cx="25" cy="10" r="2.5"/></svg></span><span className="brand-name">pathfinder<span>.</span></span></a>
@@ -90,11 +88,11 @@ export default function App() {
 
       {error && <div className="error-banner" role="alert"><span className="error-symbol">!</span><div><strong>Something went wrong</strong><span>{error}</span></div><button type="button" aria-label="Dismiss error" onClick={() => setError('')}>×</button></div>}
 
-      <div className="workspace-layout">
+      <div className="workspace-layout" id="workspace">
         <ControlPanel algorithm={algorithm} onAlgorithm={value => { setAlgorithm(value); setComparison([]); clearPath() }} tool={tool} onTool={setTool} speed={speed} onSpeed={setSpeed} loading={loading} onFind={runSearch} onReset={resetGrid} onClear={clearPath} onRandom={randomWalls} onCompare={runComparison} />
 
         <div className="main-column">
-          <section className="grid-card">
+          <section className="grid-card" id="grid">
             <div className="grid-card-heading"><div><span className="eyebrow">YOUR MAP</span><h2>Interactive grid</h2></div><div className="grid-heading-right"><span className="edit-hint"><span className="cursor-icon">↖</span> Click or drag to edit</span><button className="icon-button" type="button" aria-label="Reset grid" title="Reset grid" onClick={resetGrid}>↻</button></div></div>
             <div className="grid-stage"><Grid rows={ROWS} columns={COLUMNS} state={cells} tool={tool} visited={visited} path={path} onChange={setCells} disabled={loading} /></div>
             <div className="grid-legend"><span><i className="legend-start">S</i> Start</span><span><i className="legend-end">E</i> Destination</span><span><i className="legend-wall" /> Wall</span><span><i className="legend-visited" /> Visited</span><span><i className="legend-path" /> Shortest path</span><span className="legend-count">{cells.walls.size} walls</span></div>
@@ -105,7 +103,37 @@ export default function App() {
       </div>
 
       <ComparisonTable results={comparison} loading={comparing} />
-      <footer className="page-footer"><span><span className="footer-mark">⌁</span> Built for curious minds.</span><span>PathFinder <i>·</i> Find your way through the algorithm.</span><span className="footer-algorithm"><i style={{ background: algo.color }} />{algo.short} selected</span></footer>
+      <footer className="site-footer">
+        <div className="site-footer-main">
+          <div className="footer-brand-column">
+            <a className="footer-brand" href="#top" aria-label="PathFinder home">
+              <span className="footer-brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M7 23 14 9l5 10 6-9"/><circle cx="7" cy="23" r="2.5"/><circle cx="25" cy="10" r="2.5"/></svg></span>
+              <span className="footer-brand-name">pathfinder<span>.</span></span>
+            </a>
+            <p className="footer-tagline">Find the route. Understand the search.</p>
+            <p className="footer-description">An interactive lab for exploring how pathfinding algorithms think.</p>
+          </div>
+
+          <nav className="footer-nav" aria-label="Footer navigation">
+            <h2>Explore</h2>
+            <a href="#workspace">Algorithms</a>
+            <a href="#grid">Interactive grid</a>
+            <a href="#comparison">Compare strategies</a>
+          </nav>
+
+          <div className="footer-highlights" aria-label="PathFinder features">
+            <h2>The lab</h2>
+            <span><i>20 × 20</i> interactive grid</span>
+            <span><i>05</i> search algorithms</span>
+            <span><i>4-way</i> movement</span>
+          </div>
+        </div>
+
+        <div className="site-footer-bottom">
+          <span>© {new Date().getFullYear()} PathFinder</span>
+          <span>Built for curious minds <i /> Find your way through the algorithm.</span>
+        </div>
+      </footer>
     </main>
   </div>
 }
