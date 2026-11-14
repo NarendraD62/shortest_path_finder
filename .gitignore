@@ -1,5 +1,27 @@
-target/
-frontend/node_modules/
-frontend/dist/
-frontend/.env
+# Java and Maven build output
+**/target/
+
+# Node and Vite dependencies/build output
+**/node_modules/
+**/dist/
+
+# Local environment files; keep the checked-in example
+.env
+.env.*
+!.env.example
+
+# Generated metadata and compiler caches
+.sf/
+*.tsbuildinfo
+
+# Logs and temporary/editor/OS files
 *.log
+*.tmp
+*.swp
+*.bak
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Accidental git diff capture artifact
+/tatus

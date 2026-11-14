@@ -6,8 +6,8 @@ import { Grid, keyOf, type CellState, type Tool } from './components/Grid'
 import { StatsPanel } from './components/StatsPanel'
 import { ALGORITHMS, type Algorithm, type PathRequest, type PathResult, type Position } from './types'
 
-const ROWS = 20, COLUMNS = 30
-const initialState = (): CellState => ({ walls: new Set(), start: { row: 9, column: 5 }, end: { row: 9, column: 24 } })
+const ROWS = 20, COLUMNS = 20
+const initialState = (): CellState => ({ walls: new Set(), start: { row: 9, column: 5 }, end: { row: 9, column: 14 } })
 const wait = (ms: number) => new Promise(resolve => window.setTimeout(resolve, ms))
 
 export default function App() {

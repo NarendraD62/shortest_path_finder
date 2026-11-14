@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.*;
 
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {
-    @Value("${pathfinder.cors.allowed-origins:http://localhost:3000,http://localhost:5173}")
+    @Value("${pathfinder.cors.allowed-origins:http://localhost:3000,http://localhost:5173,http://127.0.0.1:3000,http://127.0.0.1:5173}")
     private String[] allowedOrigins;
     @Override public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**").allowedOrigins(allowedOrigins).allowedMethods("GET","POST","OPTIONS").allowedHeaders("*");
